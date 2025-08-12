@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — Zulfiadi</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- AOS Animation CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, #0d6efd, #0a58ca);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .brand-accent { color: #ffc107; font-weight: bold; }
+    .nav-link { transition: 0.3s; }
+    .nav-link:hover { color: #ffc107 !important; transform: scale(1.05); }
+
+    /* About section */
+    .about img {
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      max-width: 100%;
+      height: auto;
+    }
+    .about img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    .about h1 span { color: #0d6efd; }
+
+    /* Jarak teks ke foto lebih rapat */
+    .about .col-lg-7 {
+      padding-left: 15px;
+    }
+    @media (max-width: 991px) {
+      .about .col-lg-7 {
+        padding-left: 0;
+        margin-top: 20px;
+      }
+    }
+
+    /* Education Timeline Horizontal */
+    .timeline-horizontal {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 15px;
+      scrollbar-width: thin;
+      justify-content: center;
+    }
+    @media (max-width: 991px) {
+      .timeline-horizontal {
+        justify-content: flex-start;
+      }
+    }
+    .timeline-card {
+      flex: 0 0 auto;
+      width: 250px;
+      background: white;
+      border-radius: 15px;
+      margin: 0 10px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+    }
+    .timeline-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    .timeline-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0d6efd, #0a58ca);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 auto 15px;
+    }
+
+    /* Gallery */
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.08) rotate(1deg);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Hobbies */
+    .hobby-card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: 0.3s;
+    }
+    .hobby-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+    .hobby-card i {
+      font-size: 2.5rem;
+      color: #0d6efd;
+      margin-bottom: 10px;
+    }
+
+    /* Footer */
+    footer {
+      background: #0d6efd;
+      color: white;
+    }
+    footer .brand-accent { color: #ffc107; }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><span class="brand-accent">Z</span>ulfiadi <span class="brand-accent">N.</span>S</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end d-none d-lg-flex" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Sidebar menu mobile -->
+<div class="offcanvas offcanvas-end bg-dark text-white" tabindex="-1" id="offcanvasNav">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Menu</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link text-white active" href="about.html">About</a></li>
+      <li class="nav-item"><a class="nav-link text-white" href="projects.html">Projects</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container" style="padding-top: 100px;">
+
+  <!-- About -->
+  <section id="about" class="about py-5">
+    <div class="row align-items-center">
+      <div class="col-lg-5 mb-4" data-aos="fade-right">
+        <img src="img/img2.png" alt="Foto Profil" class="img-fluid">
+      </div>
+      <div class="col-lg-7" data-aos="fade-left">
+        <h1 class="mb-3">About <span>Me</span></h1>
+        <h4 class="text-muted">Junior Developer</h4>
+        <p>
+          Saya adalah seorang junior programmer yang bersekolah di MAKN Ende, memiliki minat dalam pengembangan website modern dan responsif.
+          Saya memiliki semangat belajar tinggi dan selalu berusaha meningkatkan keterampilan dalam bidang teknologi.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="py-5">
+    <h2 class="mb-4 text-center" data-aos="fade-up">Perjalanan Pendidikan</h2>
+    <div class="timeline-horizontal">
+      <div class="timeline-card" data-aos="zoom-in">
+        <div class="timeline-icon"><i class="bi bi-pencil-square"></i></div>
+        <h5>2009 - 2015</h5>
+        <p>SD Negeri Contoh, Ende</p>
+      </div>
+      <div class="timeline-card" data-aos="zoom-in" data-aos-delay="100">
+        <div class="timeline-icon"><i class="bi bi-book"></i></div>
+        <h5>2015 - 2018</h5>
+        <p>SMP Negeri Contoh, Ende</p>
+      </div>
+      <div class="timeline-card" data-aos="zoom-in" data-aos-delay="200">
+        <div class="timeline-icon"><i class="bi bi-laptop"></i></div>
+        <h5>2018 - 2021</h5>
+        <p>MAKN Ende - Jurusan Ilmu Agama & Teknologi</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="py-5">
+    <h2 class="mb-4 text-center" data-aos="fade-up">Galeri Foto</h2>
+    <div class="row g-3 gallery">
+      <div class="col-6 col-md-4" data-aos="zoom-in"><img src="img/img6.jpg" alt=""></div>
+      <div class="col-6 col-md-4" data-aos="zoom-in" data-aos-delay="100"><img src="img/img1.png" alt=""></div>
+      <div class="col-6 col-md-4" data-aos="zoom-in" data-aos-delay="200"><img src="img/img.webp" alt=""></div>
+      <div class="col-6 col-md-4" data-aos="zoom-in" data-aos-delay="300"><img src="img/img3.jpg" alt=""></div>
+      <div class="col-6 col-md-4" data-aos="zoom-in" data-aos-delay="400"><img src="img/img4.jpg" alt=""></div>
+      <div class="col-6 col-md-4" data-aos="zoom-in" data-aos-delay="500"><img src="img/img5.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <!-- Hobbies -->
+  <section id="hobbies" class="py-5">
+    <h2 class="mb-4 text-center" data-aos="fade-up">Hobi Saya</h2>
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="flip-left">
+        <div class="hobby-card">
+          <i class="bi bi-dribbble"></i>
+          <h5>Futsal</h5>
+          <p>Saya suka bermain futsal untuk menjaga kebugaran dan bersosialisasi dengan teman-teman.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="flip-left" data-aos-delay="200">
+        <div class="hobby-card">
+          <i class="bi bi-airplane"></i>
+          <h5>Traveling</h5>
+          <p>Menjelajahi tempat-tempat baru dan merasakan pengalaman budaya yang berbeda.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="flip-left" data-aos-delay="400">
+        <div class="hobby-card">
+          <i class="bi bi-tree"></i>
+          <h5>Mendaki Gunung & Bukit</h5>
+          <p>Mendaki gunung dan bukit memberi saya ketenangan, tantangan, dan pengalaman yang tak terlupakan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="text-light pt-5" style="background: linear-gradient(90deg, #1c1c1c, #111111);">
+  <div class="container">
+    <div class="row g-4 text-start">
+
+      <!-- Tentang -->
+      <div class="col-lg-4 col-md-6">
+        <h5 class="fw-bold border-bottom pb-2" style="border-color: #0762ff !important;">Tentang Saya</h5>
+        <p>
+          Saya <span class="brand-accent" style="color:#0762ff;">Zulfiadi N.S</span>, seorang pengembang web yang fokus pada desain modern dan fungsionalitas optimal.
+          Mengutamakan kualitas dan detail di setiap proyek.
+        </p>
+      </div>
+
+      <!-- Lokasi -->
+      <div class="col-lg-4 col-md-6">
+        <h5 class="fw-bold border-bottom pb-2" style="border-color: #0762ff !important;">Lokasi</h5>
+        <div class="ratio ratio-4x3 rounded overflow-hidden shadow-sm">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d352.92650881972014!2d121.66721694359273!3d-8.83202212696959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sid!2sid!4v1754983562974!5m2!1sid!2sid"
+            style="border:0;" allowfullscreen loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Kontak -->
+      <div class="col-lg-4 col-md-12">
+        <h5 class="fw-bold border-bottom pb-2" style="border-color: #0762ff !important;">Kontak</h5>
+        <p class="mb-2"><i class="bi bi-geo-alt-fill" style="color:#0762ff;"></i> Ende, NTT</p>
+        <p class="mb-2"><i class="bi bi-telephone-fill" style="color:#0762ff;"></i> 0822-4772-8516</p>
+        <p class="mb-2"><i class="bi bi-envelope-fill" style="color:#0762ff;"></i> adizul299@gmail.com</p>
+        <p class="mb-2"><i class="bi bi-globe" style="color:#0762ff;"></i> 
+          <a href="https://websitekamu.com" target="_blank" class="text-light text-decoration-none">websitekamu.com</a>
+        </p>
+
+        <!-- Sosial Media -->
+        <div class="mt-3 social-links">
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/zulfiadi137" target="_blank" class="text-light fs-4 me-3">
+            <i class="bi bi-instagram" style="color:#0762ff;"></i>
+          </a>
+          
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@zuladi387" target="_blank" class="text-light fs-4 me-3">
+            <i class="bi bi-tiktok" style="color:#0762ff;"></i>
+          </a>
+          
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@zuladi-137" target="_blank" class="text-light fs-4">
+            <i class="bi bi-youtube" style="color:#0762ff;"></i>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Garis pemisah -->
+    <hr class="my-4" style="border-color: #0762ff !important;">
+
+    <!-- Footer Pribadi -->
+    <div class="text-center py-3">
+      <h5 class="mb-1">
+        <span class="brand-accent" style="color:#0762ff;">Z</span>ulfiadi <span class="brand-accent" style="color:#0762ff;">N.</span>S
+      </h5>
+      <small>© 2025 Zulfiadi. All rights reserved.</small>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS Animation JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    once: true,
+    duration: 800
+  });
+</script>
+</body>
+</html>
