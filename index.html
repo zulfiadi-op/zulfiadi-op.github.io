@@ -9,6 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
+  <!-- Custom CSS -->
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -20,9 +21,17 @@
       background: linear-gradient(90deg, #0d6efd, #0a58ca);
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
-    .brand-accent { color: #ffc107; font-weight: bold; }
-    .nav-link { transition: 0.3s; }
-    .nav-link:hover { color: #ffc107 !important; transform: scale(1.05); }
+    .brand-accent {
+      color: #ffc107;
+      font-weight: bold;
+    }
+    .nav-link {
+      transition: 0.3s;
+    }
+    .nav-link:hover {
+      color: #ffc107 !important;
+      transform: scale(1.05);
+    }
 
     /* Hero */
     #hero {
@@ -31,48 +40,76 @@
       display: flex;
       align-items: center;
       text-align: center;
-      flex-direction: column;
-      padding-top: 80px;
-      padding-bottom: 40px;
       animation: fadeIn 1.5s ease-in-out;
+      flex-direction: column;
+      padding-top: 80px; /* untuk hindari navbar fixed */
+      padding-bottom: 40px;
+      position: relative;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .cta { transition: 0.3s; cursor: pointer; }
-    .cta:hover { transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+    .cta {
+      transition: 0.3s;
+      cursor: pointer;
+      user-select: none;
+    }
+    .cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
 
-    /* CV Image */
+    /* CV Image di Hero */
     #cvImage {
       margin-top: 20px;
-      max-width: 100%;
-      height: auto;
+      max-width: 400px;
+      max-height: 70vh;
       border-radius: 8px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
       cursor: pointer;
       display: none;
       transition: transform 0.3s ease;
+      user-select: none;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background: #0d6efd;
+      color: white;
+    }
+    footer .brand-accent {
+      color: #0762ff;
+    }
+
+    /* Hilangkan garis bawah link ikon sosial */
+    .social-links a {
+      text-decoration: none;
+    }
+    .social-links a:hover i {
+      color: #00ff88; /* Efek hover hijau */
     }
 
     /* Modal CV */
     #cvModal .modal-dialog {
-      max-width: 90%;
+      max-width: 600px; /* Batasi maksimal lebar modal jadi 600px */
+      max-height: 80vh; /* Batasi tinggi modal */
       margin: auto;
     }
     #cvModal img {
       width: 100%;
       height: auto;
-      max-height: 80vh;
       border-radius: 8px;
+      user-select: none;
       object-fit: contain;
+      max-height: 80vh;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
-
-    /* Footer */
-    footer { background: #0d6efd; color: white; }
-    footer .brand-accent { color: #0762ff; }
-    .social-links a { text-decoration: none; }
-    .social-links a:hover i { color: #00ff88; }
   </style>
 </head>
 <body>
@@ -84,7 +121,8 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-end d-none d-lg-flex">
+
+    <div class="collapse navbar-collapse justify-content-end d-none d-lg-flex" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
@@ -94,7 +132,7 @@
   </div>
 </nav>
 
-<!-- Sidebar Mobile -->
+<!-- Sidebar menu mobile -->
 <div class="offcanvas offcanvas-end bg-dark text-white" tabindex="-1" id="offcanvasNav">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title">Menu</h5>
@@ -109,59 +147,94 @@
   </div>
 </div>
 
-<!-- Hero -->
+<!-- Hero Section -->
 <section id="hero">
   <div class="container">
-    <h1 class="display-6 mb-2">Assalamu'alaikum,</h1>
-    <h2 class="fw-bold mb-2">Nama saya</h2>
-    <h2 class="fw-bold mb-3">Zulfiadi Nggolo Soro</h2>
+    <h1 class="display-5 mb-2">Assalamu'alaikum,</h1>
+    <h2 class="h1 fw-bold mb-2">Nama saya</h2>
+    <h2 class="h1 fw-bold mb-3">Zulfiadi Nggolo Soro</h2>
     <button id="toggleCvBtn" class="cta btn btn-warning btn-lg">Lihat CV</button>
-    <img id="cvImage" src="img/cv.jpg" alt="CV Zulfiadi">
+    <img id="cvImage" src="img/cv.jpg" alt="CV Zulfiadi" />
   </div>
 </section>
 
-<!-- Modal CV -->
-<div class="modal fade" id="cvModal" tabindex="-1">
+<!-- Modal untuk gambar CV fullscreen -->
+<div class="modal fade" id="cvModal" tabindex="-1" aria-labelledby="cvModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content bg-transparent border-0">
+    <div class="modal-content bg-transparent border-0 shadow-none">
       <div class="modal-body p-0 position-relative">
-        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
-        <img src="img/cv.jpg" alt="CV Zulfiadi Large" id="cvModalImage">
+        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="z-index:1051;"></button>
+        <img src="img/cv.jpg" alt="CV Zulfiadi Large" id="cvModalImage" />
       </div>
     </div>
   </div>
 </div>
 
 <!-- Footer -->
-<footer class="pt-5" style="background: linear-gradient(90deg, #1c1c1c, #111111);">
+<footer id="footer" class="text-light pt-5" style="background: linear-gradient(90deg, #1c1c1c, #111111);">
   <div class="container">
     <div class="row g-4 text-start">
+
+      <!-- Tentang -->
       <div class="col-lg-4 col-md-6">
-        <h5 class="fw-bold border-bottom pb-2">Tentang Saya</h5>
-        <p>Saya <span class="brand-accent" style="color:#0762ff;">Zulfiadi N.S</span>, seorang pengembang web yang fokus pada desain modern dan fungsionalitas optimal.</p>
+        <h5 class="fw-bold border-bottom pb-2" style="border-color: #0762ff !important;">Tentang Saya</h5>
+        <p>
+          Saya <span class="brand-accent" style="color:#0762ff;">Zulfiadi N.S</span>, seorang pengembang web yang fokus pada desain modern dan fungsionalitas optimal.
+          Mengutamakan kualitas dan detail di setiap proyek.
+        </p>
       </div>
+
+      <!-- Lokasi -->
       <div class="col-lg-4 col-md-6">
-        <h5 class="fw-bold border-bottom pb-2">Lokasi</h5>
+        <h5 class="fw-bold border-bottom pb-2" style="border-color: #0762ff !important;">Lokasi</h5>
         <div class="ratio ratio-4x3 rounded overflow-hidden shadow-sm">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22628.11315714677!2d121.66132155446358!3d-8.83611497869918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dad5f8c69416327%3A0x2a43086442361e84!2sSDI%20ONEKORE%205!5e1!3m2!1sid!2sid!4v1755066176124!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>       
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d352.92650881972014!2d121.66721694359273!3d-8.83202212696959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sid!2sid!4v1754983562974!5m2!1sid!2sid"
+            style="border:0;" allowfullscreen loading="lazy">
+          </iframe>
         </div>
       </div>
+
+      <!-- Kontak -->
       <div class="col-lg-4 col-md-12">
-        <h5 class="fw-bold border-bottom pb-2">Kontak</h5>
-        <p><i class="bi bi-geo-alt-fill" style="color:#0762ff;"></i> Ende, NTT</p>
-        <p><i class="bi bi-telephone-fill" style="color:#0762ff;"></i> 0822-4772-8516</p>
-        <p><i class="bi bi-envelope-fill" style="color:#0762ff;"></i> adizul299@gmail.com</p>
-        <p><i class="bi bi-globe" style="color:#0762ff;"></i> <a href="https://zulfiadi-op.github.io/web-kerajinan/" class="text-light text-decoration-none">we-kerajinan.com</a></p>
+        <h5 class="fw-bold border-bottom pb-2" style="border-color: #0762ff !important;">Kontak</h5>
+        <p class="mb-2"><i class="bi bi-geo-alt-fill" style="color:#0762ff;"></i> Ende, NTT</p>
+        <p class="mb-2"><i class="bi bi-telephone-fill" style="color:#0762ff;"></i> 0822-4772-8516</p>
+        <p class="mb-2"><i class="bi bi-envelope-fill" style="color:#0762ff;"></i> adizul299@gmail.com</p>
+        <p class="mb-2"><i class="bi bi-globe" style="color:#0762ff;"></i> 
+          <a href="https://websitekamu.com" target="_blank" class="text-light text-decoration-none">websitekamu.com</a>
+        </p>
+
+        <!-- Sosial Media -->
         <div class="mt-3 social-links">
-          <a href="https://www.instagram.com/zulfiadi137" target="_blank" class="text-light fs-4 me-3"><i class="bi bi-instagram" style="color:#0762ff;"></i></a>
-          <a href="https://www.tiktok.com/@zuladi387" target="_blank" class="text-light fs-4 me-3"><i class="bi bi-tiktok" style="color:#0762ff;"></i></a>
-          <a href="https://www.youtube.com/@zuladi-137" target="_blank" class="text-light fs-4"><i class="bi bi-youtube" style="color:#0762ff;"></i></a>
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/zulfiadi137" target="_blank" class="text-light fs-4 me-3">
+            <i class="bi bi-instagram" style="color:#0762ff;"></i>
+          </a>
+          
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@zuladi387" target="_blank" class="text-light fs-4 me-3">
+            <i class="bi bi-tiktok" style="color:#0762ff;"></i>
+          </a>
+          
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@zuladi-137" target="_blank" class="text-light fs-4">
+            <i class="bi bi-youtube" style="color:#0762ff;"></i>
+          </a>
         </div>
+
       </div>
+
     </div>
-    <hr class="my-4">
+
+    <!-- Garis pemisah -->
+    <hr class="my-4" style="border-color: #0762ff !important;">
+
+    <!-- Footer Pribadi -->
     <div class="text-center py-3">
-      <h5 class="mb-1"><span class="brand-accent" style="color:#0762ff;">Z</span>ulfiadi <span class="brand-accent" style="color:#0762ff;">N.</span>S</h5>
+      <h5 class="mb-1">
+        <span class="brand-accent" style="color:#0762ff;">Z</span>ulfiadi <span class="brand-accent" style="color:#0762ff;">N.</span>S
+      </h5>
       <small>© 2025 Zulfiadi. All rights reserved.</small>
     </div>
   </div>
@@ -169,20 +242,29 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JS untuk toggle CV dan modal -->
 <script>
   const toggleBtn = document.getElementById('toggleCvBtn');
   const cvImage = document.getElementById('cvImage');
   const cvModal = new bootstrap.Modal(document.getElementById('cvModal'));
 
   toggleBtn.addEventListener('click', () => {
-    cvImage.style.display = (cvImage.style.display === 'block') ? 'none' : 'block';
-    toggleBtn.textContent = (cvImage.style.display === 'block') ? 'Tutup CV' : 'Lihat CV';
-    if (cvImage.style.display === 'block') {
+    if (cvImage.style.display === 'none' || cvImage.style.display === '') {
+      cvImage.style.display = 'block';
+      toggleBtn.textContent = 'Tutup CV';
       cvImage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      cvImage.style.display = 'none';
+      toggleBtn.textContent = 'Lihat CV';
+      toggleBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   });
 
-  cvImage.addEventListener('click', () => { cvModal.show(); });
+  cvImage.addEventListener('click', () => {
+    cvModal.show();
+  });
 </script>
+
 </body>
 </html>
